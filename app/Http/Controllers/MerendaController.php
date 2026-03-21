@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Merenda;
 
 class MerendaController extends Controller
 {
@@ -14,22 +15,14 @@ class MerendaController extends Controller
         return 'teste';
     }
 
-    public function turma()
-    {
-       return view('turma');
-    }
 
-    public function teste()
-    {
-        return 'teste de rota ifms';
-    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('cadastro');
     }
 
     /**
@@ -37,7 +30,12 @@ class MerendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merenda = new Merenda();
+
+        $merenda->nome_prato = $request->nome_prato;
+        $merenda->descricao = $request->descricao;
+        $merenda->data = $request->data;
+        $merenda->save();
     }
 
     /**
