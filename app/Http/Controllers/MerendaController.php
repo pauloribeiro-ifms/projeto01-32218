@@ -12,7 +12,10 @@ class MerendaController extends Controller
      */
     public function index()
     {
-        return 'teste';
+        $merenda = Merenda::All();
+
+        return view('index',['merendas' => $merenda]);
+
     }
 
 
@@ -36,6 +39,8 @@ class MerendaController extends Controller
         $merenda->descricao = $request->descricao;
         $merenda->data = $request->data;
         $merenda->save();
+
+        return redirect('/cadastro');
     }
 
     /**
@@ -51,7 +56,8 @@ class MerendaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $merenda = Merenda::find($id);
+        return view('editar',['merenda' => $merenda]);
     }
 
     /**
@@ -59,7 +65,12 @@ class MerendaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $merenda = Merenda::find($id);
+        $merenda->nome_prato = $request->nome_prato;
+        $merenda->descricao = $request->descricao;
+        $merenda->data = $request->data;
+        $merenda->save();
+        return redirect('/');
     }
 
     /**
