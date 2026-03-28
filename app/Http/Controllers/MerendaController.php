@@ -78,6 +78,7 @@ class MerendaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $merenda = Merenda::find($id)->delete();
+        return redirect('/');
     }
 }

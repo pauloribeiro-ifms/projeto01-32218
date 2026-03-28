@@ -13,11 +13,16 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <td class="text-end" colspan="5"> <a href="{{ route('cadastro') }}" class="btn btn-success">
+                                 Cadastrar Cardapio </a> </td>
+                        </tr>
+                        <tr>
                         <th scope="col">id</th>
                         <th scope="col">Prato</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Data</th>
                         <td>editar</td>
+                        <td>Excluir</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +33,14 @@
                         <td>{{ $merenda->descricao }}</td>
                         <td>{{ $merenda->data }}</td>
                         <td><a class="btn btn-warning" href="{{route('editar', $merenda->id)}}" > Editar </a> </td>
+                        <td > 
+                            <form action="{{ route('excluir',$merenda->id) }}" method="POST" >
+                                @csrf
+                                @method('delete')
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+
+                            </form>    
+                        </td>
                         </tr>
                         @endforeach
                     </tbody>
